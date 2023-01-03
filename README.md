@@ -1,4 +1,6 @@
-# PongPygameZero
+# Pong Pygame Zero
+
+![](pongGame.gif)
 
 ## Tutorial
 
