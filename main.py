@@ -127,7 +127,10 @@ def update_ball_collision():
     if ball.top <= VERTICAL_MARGIN or ball.bottom >= HEIGHT - VERTICAL_MARGIN:
         ball.vy *= -1
 
-    if left.colliderect(ball) or right.colliderect(ball):
+    if left.colliderect(ball) and ball.vx < 0:
+        ball.vx *= -1
+
+    if right.colliderect(ball) and ball.vx > 0:
         ball.vx *= -1
 
 
