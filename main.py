@@ -1,13 +1,17 @@
 import pgzrun
 import random
 
+""" CONFIGURATION """
 
 WIDTH = 800
 HEIGHT = 600
 
-TITLE = "PONG"
+TITLE = "Pong Pygame Zero"
 
-bg_color = (64, 64, 64)
+BG_COLOR = (64, 64, 64)
+FG_COLOR = "yellow"
+
+""" VARIABLES """
 
 left = Actor("left")
 left.x = 20
@@ -30,49 +34,63 @@ ball.vx = 5
 ball.vy = 5
 
 
+""" DRAW """
+
+
 def draw():
-    screen.fill(bg_color)
-    screen.draw.line((WIDTH / 2, 40), (WIDTH / 2, HEIGHT - 40), color = "yellow")
+    screen.fill(BG_COLOR)
+    screen.draw.line((WIDTH / 2, 40), (WIDTH / 2, HEIGHT - 40), color=FG_COLOR)
+
     left.draw()
     right.draw()
     ball.draw()
+
     draw_points()
     draw_result()
 
 
 def draw_points():
-    screen.draw.text(f"Lewy: {left.points}",
-                     color="yellow",
+    """Draws players points
+    """
+    screen.draw.text(f"Left: {left.points}",
+                     color=FG_COLOR,
                      center=(WIDTH / 4 - 20, 20),
                      fontsize=48)
 
-    screen.draw.text(f"Prawy: {right.points}",
+    screen.draw.text(f"Right: {right.points}",
                      color="yellow",
                      center=(WIDTH / 2 + WIDTH / 4 - 20, 20),
                      fontsize=48)
 
 
 def draw_result():
+    """Draws results after finishing the game
+    """
     if left.win:
-        screen.draw.text("LEWY WYGRYWA!!!",
-                            color="yellow",
-                            center=(WIDTH / 2, HEIGHT / 2),
-                            fontsize=96)
+        screen.draw.text("LEFT WINS!!!",
+                         color=FG_COLOR,
+                         center=(WIDTH / 2, HEIGHT / 2),
+                         fontsize=96)
 
     if right.win:
-        screen.draw.text("PRAWY WYGRYWA!!!",
-                            color="yellow",
-                            center=(WIDTH / 2, HEIGHT / 2),
-                            fontsize=96) 
-    
+        screen.draw.text("RIGHT WINS!!!",
+                         color=FG_COLOR,
+                         center=(WIDTH / 2, HEIGHT / 2),
+                         fontsize=96)
+
+
+""" UPDATE """
+
 
 def update():
     if not (left.win or right.win):
-        move_players()
-        move_ball()
+        update_players()
+        update_ball()
 
 
-def move_players():
+def update_players():
+    """Updates players positions based on the pressed keys
+    """
     if keyboard.w and left.top > 40:
         left.y -= left.vy
 
@@ -84,9 +102,11 @@ def move_players():
 
     if keyboard.down and right.bottom < HEIGHT - 40:
         right.y += right.vy
-    
 
-def move_ball():
+
+def update_ball():
+    """Updates ball position
+    """
     ball.x += ball.vx
     ball.y += ball.vy
 
@@ -117,13 +137,20 @@ def move_ball():
     if left.points == 11:
         left.win = True
         ball.game_over = True
-    
+
+
+""" HELPERS """
+
 
 def reset_ball():
+    """Resets ball position
+    """
     ball.x = WIDTH / 2
     ball.y = HEIGHT / 2
     ball.vx = random.choice([-5, 5])
     ball.vy = random.choice([-5, 5])
 
+
+""" INITIALIZATION """
 
 pgzrun.go()
