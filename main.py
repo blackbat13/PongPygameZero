@@ -12,6 +12,7 @@ VERTICAL_MARGIN = 40
 HORIZONTAL_MARGIN = 20
 BG_COLOR = (64, 64, 64)
 FG_COLOR = "yellow"
+POINTS_TO_WIN = 11
 
 """ VARIABLES """
 
@@ -57,7 +58,7 @@ def draw_points():
                      fontsize=48)
 
     screen.draw.text(f"Right: {right.points}",
-                     color="yellow",
+                     color=FG_COLOR,
                      center=(WIDTH / 2 + WIDTH / 4 -
                              HORIZONTAL_MARGIN, HORIZONTAL_MARGIN),
                      fontsize=48)
@@ -145,11 +146,11 @@ def update_ball_exit():
 def update_winner():
     """Checks if one of the players won the game
     """
-    if right.points == 11:
+    if right.points == POINTS_TO_WIN:
         right.win = True
         ball.game_over = True
 
-    if left.points == 11:
+    if left.points == POINTS_TO_WIN:
         left.win = True
         ball.game_over = True
 
@@ -162,8 +163,8 @@ def reset_ball():
     """
     ball.x = WIDTH / 2
     ball.y = HEIGHT / 2
-    ball.vx = random.choice([-5, 5])
-    ball.vy = random.choice([-5, 5])
+    ball.vx = random.choice([-6, -5, -4, 4, 5, 6])
+    ball.vy = random.choice([-6, -5, -4, 4, 5, 6])
 
 
 """ INITIALIZATION """
