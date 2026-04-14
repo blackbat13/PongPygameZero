@@ -84,11 +84,14 @@ This makes the project easy to read and a good starting point for learning how g
 - Replace one paddle with a simple AI opponent
 - Add visual effects such as particle trails or screen shake
 
+## Corresponding Tutorial
+
+A step-by-step tutorial that builds this project from scratch is available on the [CS-HTIEW](https://edu.cs-htiew.pl/learning-by-games/python/pygame-zero/pong/) website. It covers the same concepts in more detail and is a great resource for beginners.
+
 ## Credits
 
-- Tutorial inspiration: [Learning by Games - Pong with Pygame Zero](https://edu.cs-htiew.pl/learning-by-games/python/pygame-zero/pong/)
 - Sprite assets: [Kenney](https://kenney.nl)
 
 ## License
 
-This project is distributed under the license included in [LICENSE](LICENSE).
+This project is distributed under the MIT license included in [LICENSE](LICENSE).
